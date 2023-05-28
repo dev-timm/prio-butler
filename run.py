@@ -68,3 +68,13 @@ def create_task():
     return username, task_name, task_importance, task_urgency
 
 new_task = create_task()
+
+def update_user_worksheet(arg):
+    """
+    update worksheet with input from user
+    """
+    user_worksheet = SHEET.worksheet("user")
+    user_worksheet.append_row(arg)
+
+task_data = [(task) for task in new_task]
+update_user_worksheet(task_data)
