@@ -12,8 +12,16 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('prio-butler')
 
-user = SHEET.worksheet('user')
+USER = SHEET.worksheet('user')
+data = USER.get_all_values()
 
-data = user.get_all_values()
+def introduce_to_user():
+    """
+    Welcome user and ask for name
+    """
+    print("Welcome user! I am Alfred, your butler who will help you prioritize your tasks for today.\n")
 
-print(data)
+    username = input("Would you be so kind to tell me your name so that I can properly address you? ")
+    print(f"Good day {username}")
+
+introduce_to_user()
