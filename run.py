@@ -12,8 +12,7 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('prio-butler')
 
-USER = SHEET.worksheet('user')
-data = USER.get_all_values()
+number_of_tasks = 0
 
 def introduce_to_user():
     """
@@ -38,4 +37,8 @@ def get_username():
 
 username = get_username()
 
-print(username)
+def show_number_of_tasks():
+    print(f"Excellent {username}! \n")
+    print(f"You currently have {number_of_tasks} tasks in your list")
+
+show_number_of_tasks()
