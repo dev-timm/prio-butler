@@ -42,3 +42,29 @@ def show_number_of_tasks():
     print(f"You currently have {number_of_tasks} tasks in your list")
 
 show_number_of_tasks()
+
+def create_task():
+    task_name = input("Which task would you like to add to your list of tasks?\n")
+    while True:
+        if len(task_name) > 0:
+            break
+        else:
+            task_name = input("Please enter a valid name\n")
+    
+    task_importance = input("Splendid!\nCould you tell me if this is an important task?\n1. [yes]\n2. [no]\n")
+    while True:
+        if task_importance.lower() == 'yes' or task_importance == 'no':
+            break
+        else:
+            task_importance = input("Please enter either 'yes' or 'no'\n")
+    
+    task_urgency = input("And is this task urgent?\n1. [yes]\n2. [no]\n")
+    while True:
+        if task_urgency.lower() == 'yes' or task_urgency == 'no':
+            break
+        else:
+            task_urgency = input("Please enter either 'yes' or 'no'\n")
+
+    return username, task_name, task_importance, task_urgency
+
+new_task = create_task()
