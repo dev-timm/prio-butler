@@ -37,6 +37,30 @@ def get_username():
 
 username = get_username()
 
+def show_option_menu():
+    user_selection = input("Please choose what you would like me to do for you next:\nCreate a new task - [new]\nShow the list of your priorities - [show]\nDelete a task - [delete]\nQuit program - [quit]\n")
+    while True:
+        if len(user_selection) > 0:
+            break
+        else:
+            user_selection = input("Please enter a valid option")
+
+    while True:
+        if user_selection.lower() == "new":
+            create_task()
+            break
+        elif user_selection.lower() == "show":
+            print("show all tasks")
+            break
+        elif user_selection.lower() == "delete":
+            print("delete a task")
+            break
+        elif user_selection.lower() == "quit":
+            print("goodbye")
+            quit()
+        else:
+            user_selection = input("Please enter a valid option \n")
+
 def show_number_of_tasks():
     print(f"Excellent {username}! \n")
     print(f"You currently have {number_of_tasks} tasks in your list")
@@ -64,6 +88,8 @@ def create_task():
             break
         else:
             task_urgency = input("Please enter either 'yes' or 'no'\n")
+
+    show_option_menu()
 
     return username, task_name, task_importance, task_urgency
 
