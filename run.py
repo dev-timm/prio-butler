@@ -1,5 +1,6 @@
 import gspread 
 from google.oauth2.service_account import Credentials
+from pprint import pprint
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -77,6 +78,13 @@ def show_number_of_tasks():
 
 show_number_of_tasks()
 
+def show_list_of_priorities():
+    """
+    Shows a list of all task data the user has added
+    """
+    tasks = SHEET.worksheet("user").get_all_values()
+    pprint(tasks)
+
 def show_option_menu():
     user_selection = input("Please choose what you would like me to do for you next:\nCreate a new task - [new]\nShow the list of your priorities - [show]\nDelete a task - [delete]\nQuit program - [quit]\n")
     while True:
@@ -91,6 +99,7 @@ def show_option_menu():
             break
         elif user_selection.lower() == "show":
             print("show all tasks")
+            show_list_of_priorities()
             break
         elif user_selection.lower() == "delete":
             print("delete a task")
