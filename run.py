@@ -1,6 +1,9 @@
 import gspread 
 from google.oauth2.service_account import Credentials
 from pprint import pprint
+import colorama
+from colorama import Fore, Back, Style
+colorama.init(autoreset = True)
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -26,7 +29,7 @@ def introduce_to_user():
     """
     Welcome user.
     """
-    print("Welcome user! I am Alfred, your butler who will help you prioritize your tasks for today.\n")
+    print(f"Welcome user! I am Alfred, your butler who will help you prioritize your tasks for today.\n")
 
 introduce_to_user()
 
@@ -35,37 +38,45 @@ def get_username():
     Ask for username.
     Validate if entered name is more than one character long.
     """
-    username = input("Would you be so kind to tell me your name so that I can\nproperly address you?\n")
+    username = input(f"Would you be so kind to tell me your name so that I can\nproperly address you?\n{Fore.GREEN}")
     while True:
         if len(username) > 0:
             break
         else:
-            username = input("Please enter a valid name\n")
+            username = input(f"Please enter a valid name\n{Fore.GREEN}")
+            print()
+    print()
     return username
 
 username = get_username()
 
 def create_task():
-    task_name = input("Which task would you like to add to your list of tasks?\n")
+    task_name = input(f"Which task would you like to add to your list of tasks?\n{Fore.GREEN}")
+    print()
     while True:
         if len(task_name) > 0:
             break
         else:
-            task_name = input("Please enter a valid name\n")
+            task_name = input(f"Please enter a valid name\n{Fore.GREEN}")
+            print()
     
-    task_importance = input("Splendid!\nCould you tell me if this is an important task?\n1. [yes]\n2. [no]\n")
+    task_importance = input(f"Splendid!\nCould you tell me if this is an important task?\n1. [yes]\n2. [no]\n{Fore.GREEN}")
+    print()
     while True:
         if task_importance.lower() == 'yes' or task_importance == 'no':
             break
         else:
-            task_importance = input("Please enter either 'yes' or 'no'\n")
+            task_importance = input(f"Please enter either 'yes' or 'no'\n{Fore.GREEN}")
+            print()
     
-    task_urgency = input("And is this task urgent?\n1. [yes]\n2. [no]\n")
+    task_urgency = input(f"And is this task urgent?\n1. [yes]\n2. [no]\n{Fore.GREEN}")
+    print()
     while True:
         if task_urgency.lower() == 'yes' or task_urgency == 'no':
             break
         else:
-            task_urgency = input("Please enter either 'yes' or 'no'\n")
+            task_urgency = input(f"Please enter either 'yes' or 'no'\n{Fore.GREEN}")
+            print()
 
     task_data = [username, task_name, task_importance, task_urgency]
     update_user_worksheet(task_data)
@@ -86,12 +97,16 @@ def show_list_of_priorities():
     pprint(tasks)
 
 def show_option_menu():
-    user_selection = input("Please choose what you would like me to do for you next:\nCreate a new task - [new]\nShow the list of your priorities - [show]\nDelete a task - [delete]\nQuit program - [quit]\n")
+    print("Please choose what you would like me to do for you next:")
+    print()
+    user_selection = input(f"Create a new task - [new]\nShow the list of your priorities - [show]\nDelete a task - [delete]\nQuit program - [quit]\n{Fore.GREEN}")
+
     while True:
         if len(user_selection) > 0:
             break
         else:
-            user_selection = input("Please enter a valid option\n")
+            user_selection = input(f"Please enter a valid option\n{Fore.GREEN}")
+            print()
 
     while True:
         if user_selection.lower() == "new":
@@ -108,7 +123,7 @@ def show_option_menu():
             print("goodbye")
             quit()
         else:
-            user_selection = input("Please enter a valid option\n")
+            user_selection = input(f"Please enter a valid option\n{Fore.GREEN}")
 
     show_option_menu()
 
