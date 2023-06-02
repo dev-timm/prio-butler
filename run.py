@@ -31,8 +31,6 @@ def introduce_to_user():
     """
     print(f"Welcome user! I am Alfred, your butler who will help you prioritize your tasks for today.\n")
 
-introduce_to_user()
-
 def get_username():
     """
     Ask for username.
@@ -48,9 +46,7 @@ def get_username():
     print()
     return username
 
-username = get_username()
-
-def create_task():
+def create_task(name):
     task_name = input(f"Which task would you like to add to your list of tasks?\n{Fore.GREEN}")
     print()
     while True:
@@ -78,16 +74,12 @@ def create_task():
             task_urgency = input(f"Please enter either 'yes' or 'no'\n{Fore.GREEN}")
             print()
 
-    task_data = [username, task_name, task_importance, task_urgency]
+    task_data = [name, task_name, task_importance, task_urgency]
     update_user_worksheet(task_data)
 
-create_task()
-
-def show_number_of_tasks():
-    print(f"Excellent {username}! \n")
+def show_number_of_tasks(name):
+    print(f"Excellent {name}! \n")
     print(f"You currently have {number_of_tasks} tasks in your list")
-
-show_number_of_tasks()
 
 def show_list_of_priorities():
     """
@@ -96,7 +88,7 @@ def show_list_of_priorities():
     tasks = SHEET.worksheet("user").get_all_values()
     pprint(tasks)
 
-def show_option_menu():
+def show_option_menu(name):
     print("Please choose what you would like me to do for you next:")
     print()
     user_selection = input(f"Create a new task - [new]\nShow the list of your priorities - [show]\nDelete a task - [delete]\nQuit program - [quit]\n{Fore.GREEN}")
@@ -110,7 +102,7 @@ def show_option_menu():
 
     while True:
         if user_selection.lower() == "new":
-            create_task()
+            create_task(name)
             break
         elif user_selection.lower() == "show":
             print("show all tasks")
@@ -125,6 +117,13 @@ def show_option_menu():
         else:
             user_selection = input(f"Please enter a valid option\n{Fore.GREEN}")
 
-    show_option_menu()
+    show_option_menu(name)
 
-show_option_menu()
+def main():
+    introduce_to_user()
+    username = get_username()
+    create_task(username)
+    show_number_of_tasks(username)
+    show_option_menu(username)
+
+main()
