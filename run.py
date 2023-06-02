@@ -18,18 +18,21 @@ SHEET = GSPREAD_CLIENT.open('prio-butler')
 
 number_of_tasks = 0
 
+
 def update_user_worksheet(arg):
     """
-    update worksheet with input from user
+    update worksheet with input from user.
     """
     user_worksheet = SHEET.worksheet("user")
     user_worksheet.append_row(arg)
+
 
 def introduce_to_user():
     """
     Welcome user.
     """
     print(f"Welcome user! I am Alfred, your butler who will help you prioritize your tasks for today.\n")
+
 
 def get_username():
     """
@@ -46,7 +49,12 @@ def get_username():
     print()
     return username
 
+
 def create_task(name):
+    """
+    Creates a new task.
+    Asks the user for a title, the importance and urgency of the task.
+    """
     task_name = input(f"Which task would you like to add to your list of tasks?\n{Fore.GREEN}")
     print()
     while True:
@@ -77,18 +85,28 @@ def create_task(name):
     task_data = [name, task_name, task_importance, task_urgency]
     update_user_worksheet(task_data)
 
+
 def show_number_of_tasks(name):
+    """
+    Prints the total number of tasks the user has created.
+    """
     print(f"Excellent {name}! \n")
     print(f"You currently have {number_of_tasks} tasks in your list")
 
+
 def show_list_of_priorities():
     """
-    Shows a list of all task data the user has added
+    Shows a list of all task data the user has added.
     """
     tasks = SHEET.worksheet("user").get_all_values()
     pprint(tasks)
 
+
 def show_option_menu(name):
+    """
+    Show all options the user can choose from.
+    Options are: Creating a new task, show all priorities, delete a task and quit the program.
+    """
     print("Please choose what you would like me to do for you next:")
     print()
     user_selection = input(f"Create a new task - [new]\nShow the list of your priorities - [show]\nDelete a task - [delete]\nQuit program - [quit]\n{Fore.GREEN}")
@@ -119,7 +137,11 @@ def show_option_menu(name):
 
     show_option_menu(name)
 
+
 def main():
+    """
+    Contains all functions to run the program.
+    """
     introduce_to_user()
     username = get_username()
     create_task(username)
