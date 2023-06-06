@@ -100,12 +100,37 @@ def show_list_of_priorities(name):
     """
     user_data = SHEET.worksheet("user").get_all_records()
 
+    high_prio = []
+    high_importance = []
+    high_urgency = []
+    no_prio = []
+
     for data in user_data:
         data_name = (data['Name'])
         
         if data_name == name:
-            print(data['Task Name'])
-
+            if data['Important?'] == 'yes' and data['Urgent?'] == 'yes':
+                high_prio.append(data['Task Name'])
+            elif data['Important?'] == 'no' and data['Urgent?'] == 'yes':
+                high_importance.append(data['Task Name'])
+            elif data['Important?'] == 'yes' and data['Urgent?'] == 'no':
+                high_urgency.append(data['Task Name'])
+            elif data['Important?'] == 'no' and data['Urgent?'] == 'no':
+                no_prio.append(data['Task Name'])
+        
+    print(f"You have {number_of_tasks} high priority for today which you should work on as soon as you can:")
+    print(high_prio)
+    print()
+    print(f"You have {number_of_tasks} important task which would be great if you could at least start working on today:")
+    print(high_importance)
+    print()
+    print(f"You have {number_of_tasks} urgent task that I would suggest that you think about if someone else can do it for you since:")
+    print(high_urgency)
+    print()
+    print(f"You have {number_of_tasks} task which I suggest that you ignore for now until it becomes more urgent or important:")
+    print(no_prio)
+    print()
+        
 
 def show_option_menu(name):
     """
@@ -129,7 +154,6 @@ def show_option_menu(name):
             create_task(name)
             break
         elif user_selection.lower() == "show":
-            print("show all tasks")
             show_list_of_priorities(name)
             break
         elif user_selection.lower() == "delete":
