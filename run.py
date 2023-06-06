@@ -94,12 +94,17 @@ def show_number_of_tasks(name):
     print(f"You currently have {number_of_tasks} tasks in your list")
 
 
-def show_list_of_priorities():
+def show_list_of_priorities(name):
     """
     Shows a list of all task data the user has added.
     """
-    tasks = SHEET.worksheet("user").get_all_values()
-    pprint(tasks)
+    user_data = SHEET.worksheet("user").get_all_records()
+
+    for data in user_data:
+        data_name = (data['Name'])
+        
+        if data_name == name:
+            print(data['Task Name'])
 
 
 def show_option_menu(name):
@@ -125,7 +130,7 @@ def show_option_menu(name):
             break
         elif user_selection.lower() == "show":
             print("show all tasks")
-            show_list_of_priorities()
+            show_list_of_priorities(name)
             break
         elif user_selection.lower() == "delete":
             print("delete a task")
@@ -135,6 +140,7 @@ def show_option_menu(name):
             quit()
         else:
             user_selection = input(f"Please enter a valid option\n{Fore.GREEN}")
+            print()
 
     show_option_menu(name)
 
