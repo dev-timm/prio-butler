@@ -110,6 +110,7 @@ def show_option_menu(name):
     print("Please choose what you would like me to do for you next:")
     print()
     user_selection = input(f"Create a new task - [new]\nShow the list of your priorities - [show]\nDelete a task - [delete]\nQuit program - [quit]\n{Fore.GREEN}")
+    print()
 
     while True:
         if len(user_selection) > 0:
@@ -130,7 +131,7 @@ def show_option_menu(name):
             print("delete a task")
             break
         elif user_selection.lower() == "quit":
-            print("goodbye")
+            print(f"I wish you a wonderful rest of your day {name}!")
             quit()
         else:
             user_selection = input(f"Please enter a valid option\n{Fore.GREEN}")
