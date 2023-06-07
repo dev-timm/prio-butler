@@ -130,10 +130,17 @@ def show_list_of_priorities(name):
             print(f"{item_index}. {item}")
         print()
     
-    show_prio_items(high_prio_statement, high_prio)
-    show_prio_items(high_importance_statement, high_importance)
-    show_prio_items(high_urgency_statement, high_urgency)
-    show_prio_items(no_prio_statement, no_prio)
+    if len(high_prio) > 0:
+        show_prio_items(high_prio_statement, high_prio)
+    else:
+        print("Marvelous, I have not identified any high priorities for today which you should work on as soon as you can!")
+        print()
+    if len(high_importance) > 0:
+        show_prio_items(high_importance_statement, high_importance)
+    if len(high_urgency) > 0:
+        show_prio_items(high_urgency_statement, high_urgency)
+    if len(no_prio) > 0:
+        show_prio_items(no_prio_statement, no_prio)
 
 
 def show_option_menu(name):
