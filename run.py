@@ -118,10 +118,10 @@ def show_list_of_priorities(name):
             elif data['Important?'] == 'no' and data['Urgent?'] == 'no':
                 no_prio.append(data['Task Name'])
         
-    high_prio_statement = f"You have {number_of_tasks} high priority for today which you should work on as soon as you can:"
-    high_importance_statement = f"You have {number_of_tasks} important task which would be great if you could at least start working on today:"
-    high_urgency_statement = f"You have {number_of_tasks} urgent task that I would suggest that you think about if someone else can do it for you since:"
-    no_prio_statement = f"You have {number_of_tasks} task which I suggest that you ignore for now until it becomes more urgent or important:"
+    high_prio_statement = f"You have {len(high_prio)} high priority for today which you should work on as soon as you can:"
+    high_importance_statement = f"You have {len(high_importance)} important task which would be great if you could at least start working on today:"
+    high_urgency_statement = f"You have {len(high_urgency)} urgent task that I would suggest that you think about if someone else can do it for you since:"
+    no_prio_statement = f"You have {len(no_prio)} task which I suggest that you ignore for now until it becomes more urgent or important:"
     
     def show_prio_items(print_statement, list):
         print(print_statement)
