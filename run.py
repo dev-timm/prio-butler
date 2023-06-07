@@ -16,8 +16,6 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('prio-butler')
 
-number_of_tasks = 0
-
 
 def update_user_worksheet(arg):
     """
@@ -90,8 +88,18 @@ def show_number_of_tasks(name):
     """
     Prints the total number of tasks the user has created.
     """
-    print(f"Excellent {name}! \n")
-    print(f"You currently have {number_of_tasks} tasks in your list")
+
+    user_data = SHEET.worksheet("user").get_all_records()
+    number_of_tasks = 0
+
+    for data in user_data:
+        data_name = (data['Name'])
+        
+        if data_name == name:
+            number_of_tasks += 1
+
+    print(f"Excellent {name}!")
+    print(f"You currently have {number_of_tasks} tasks in your list!")
 
 
 def show_list_of_priorities(name):
@@ -104,6 +112,8 @@ def show_list_of_priorities(name):
     high_importance = []
     high_urgency = []
     no_prio = []
+    number_of_tasks = high_prio + high_importance + high_urgency + no_prio
+
 
     for data in user_data:
         data_name = (data['Name'])
@@ -141,6 +151,8 @@ def show_list_of_priorities(name):
         show_prio_items(high_urgency_statement, high_urgency)
     if len(no_prio) > 0:
         show_prio_items(no_prio_statement, no_prio)
+    
+    print(number_of_tasks)
 
 
 def show_option_menu(name):
@@ -148,6 +160,8 @@ def show_option_menu(name):
     Show all options the user can choose from.
     Options are: Creating a new task, show all priorities, delete a task and quit the program.
     """
+    show_number_of_tasks(name)
+    print()
     print("Please choose what you would like me to do for you next:")
     print()
     user_selection = input(f"Create a new task - [new]\nShow the list of your priorities - [show]\nDelete a task - [delete]\nQuit program - [quit]\n{Fore.GREEN}")
@@ -187,7 +201,6 @@ def main():
     introduce_to_user()
     username = get_username()
     create_task(username)
-    show_number_of_tasks(username)
     show_option_menu(username)
 
 main()
