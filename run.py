@@ -151,8 +151,45 @@ def show_list_of_priorities(name):
         show_prio_items(high_urgency_statement, high_urgency)
     if len(no_prio) > 0:
         show_prio_items(no_prio_statement, no_prio)
-    
-    print(number_of_tasks)
+
+
+def delete_task(name):
+    """
+    Enables user to delete a task.
+    """
+    user_data = SHEET.worksheet("user").get_all_records()
+    user_list = []
+
+    for data in user_data:
+        data_name = (data['Name'])
+
+        if data_name == name:
+            user_list.append(data)
+
+            for item in user_list:
+                item_index = user_list.index(item) + 1
+            
+            if data['Important?'] == 'yes' and data['Urgent?'] == 'yes':
+                print(f"[{item_index}] {data['Task Name']} (important and urgent)")
+            elif data['Important?'] == 'no' and data['Urgent?'] == 'yes':
+                print(f"[{item_index}] {data['Task Name']} (urgent)")
+            elif data['Important?'] == 'yes' and data['Urgent?'] == 'no':
+                print(f"[{item_index}] {data['Task Name']} (important)")
+            elif data['Important?'] == 'no' and data['Urgent?'] == 'no':
+                print(f"[{item_index}] {data['Task Name']} (no prio)")
+            
+    print()
+    task_to_delete = input(f"Please type the number of the task that you would like to delete:\n{Fore.GREEN}")
+    print()
+    while True:
+        if int(task_to_delete) > 0 and int(task_to_delete) <= len(user_list):
+            user_list.pop(int(task_to_delete) - 1)
+            user_worksheet = SHEET.worksheet("user")
+            user_worksheet.delete_rows(int(task_to_delete) + 1)
+            break
+        else:
+            task_to_delete = input(f"Please enter a valid number between 1 and {len(user_list)}\n{Fore.GREEN}")
+            print()
 
 
 def show_option_menu(name):
@@ -182,7 +219,7 @@ def show_option_menu(name):
             show_list_of_priorities(name)
             break
         elif user_selection.lower() == "delete":
-            print("delete a task")
+            delete_task(name)
             break
         elif user_selection.lower() == "quit":
             print(f"I wish you a wonderful rest of your day {name}!")
