@@ -127,11 +127,23 @@ def show_list_of_priorities(name):
                 high_urgency.append(data['Task Name'])
             elif data['Important?'] == 'no' and data['Urgent?'] == 'no':
                 no_prio.append(data['Task Name'])
-        
-    high_prio_statement = f"You have {len(high_prio)} high priority for today which you should work on as soon as you can:"
-    high_importance_statement = f"You have {len(high_importance)} important task which would be great if you could at least start working on today:"
-    high_urgency_statement = f"You have {len(high_urgency)} urgent task that I would suggest that you think about if someone else can do it for you since:"
-    no_prio_statement = f"You have {len(no_prio)} task which I suggest that you ignore for now until it becomes more urgent or important:"
+    
+    if len(high_prio) < 2:
+        high_prio_statement = f"You have {len(high_prio)} high priority for today which you should work on as soon as you can:"
+    else:
+        high_prio_statement = f"You have {len(high_prio)} high priorities for today which you should work on as soon as you can:"
+    if len(high_importance) < 2:
+        high_importance_statement = f"You have {len(high_importance)} important task which would be great if you could at least start working on today:"
+    else:
+        high_importance_statement = f"You have {len(high_importance)} important tasks which would be great if you could at least start working on today:"
+    if len(high_urgency) < 2:
+        high_urgency_statement = f"You have {len(high_urgency)} urgent task that I would suggest that you think about if someone else can do it for you since it’s not as important:"
+    else:
+        high_urgency_statement = f"You have {len(high_urgency)} urgent tasks that I would suggest that you think about if someone else can do them for you since they are not as important:"
+    if len(high_prio) < 2:
+        no_prio_statement = f"You have {len(no_prio)} task which I suggest that you ignore for now until it becomes more urgent or important:"
+    else:
+        no_prio_statement = f"You have {len(no_prio)} tasks which I suggest that you ignore for now until they become more urgent or important:"
     
     def show_prio_items(print_statement, list):
         print(print_statement)
