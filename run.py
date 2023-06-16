@@ -1,9 +1,9 @@
-import gspread 
+import gspread
 from google.oauth2.service_account import Credentials
 from pprint import pprint
 import colorama
 from colorama import Fore, Back, Style
-colorama.init(autoreset = True)
+colorama.init(autoreset=True)
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -30,11 +30,11 @@ def check_for_duplicates(user_input, list_of_records):
     Check if the user input us already captured in the spreadsheet,
     """
     is_duplicate = False
-    
+
     for record in list_of_records:
         if record == user_input:
             is_duplicate = True
-    
+
     return is_duplicate
 
 
@@ -57,13 +57,13 @@ def get_username():
             list_of_usernames = list(dict.fromkeys(user_list))
             username_exists = check_for_duplicates(username, list_of_usernames)
 
-            if username_exists == True:
+            if username_exists is True:
                 while True:
                     print()
                     print(f"Welcome back {username}!")
                     print()
                     show_option_menu(username)
-                    break      
+                    break
             break
         else:
             username = input(f"Please enter a valid name\n{Fore.GREEN}")
@@ -93,7 +93,7 @@ def create_task(name):
                     task_list.append(data['Task Name'])
 
             task_exists = check_for_duplicates(task_name, task_list)
-            if task_exists == True:
+            if task_exists is True:
                 while True:
                     print()
                     print(f"Looks like this task already exists on your list.")
@@ -105,7 +105,7 @@ def create_task(name):
         else:
             task_name = input(f"Please enter a valid name\n{Fore.GREEN}")
             print()
-    
+
     task_importance = input(f"Splendid!\nCould you tell me if this is an important task?\n[yes]\n[no]\n{Fore.GREEN}")
     print()
     while True:
@@ -114,7 +114,7 @@ def create_task(name):
         else:
             task_importance = input(f"Please enter either 'yes' or 'no'\n{Fore.GREEN}")
             print()
-    
+
     task_urgency = input(f"And is this task urgent?\n[yes]\n[no]\n{Fore.GREEN}")
     print()
     while True:
@@ -138,7 +138,7 @@ def show_number_of_tasks(name):
 
     for data in user_data:
         data_name = (data['Name'])
-        
+
         if data_name == name:
             number_of_tasks += 1
 
@@ -157,10 +157,9 @@ def show_list_of_priorities(name):
     no_prio = []
     number_of_tasks = high_prio + high_importance + high_urgency + no_prio
 
-
     for data in user_data:
         data_name = (data['Name'])
-        
+
         if data_name == name:
             if data['Important?'] == 'yes' and data['Urgent?'] == 'yes':
                 high_prio.append(data['Task Name'])
@@ -170,7 +169,7 @@ def show_list_of_priorities(name):
                 high_urgency.append(data['Task Name'])
             elif data['Important?'] == 'no' and data['Urgent?'] == 'no':
                 no_prio.append(data['Task Name'])
-    
+
     if len(high_prio) < 2:
         high_prio_statement = f"You have {len(high_prio)} high priority for today which you should work on as soon as you can:"
     else:
@@ -187,14 +186,14 @@ def show_list_of_priorities(name):
         no_prio_statement = f"You have {len(no_prio)} task which I suggest that you ignore for now until it becomes more urgent or important:"
     else:
         no_prio_statement = f"You have {len(no_prio)} tasks which I suggest that you ignore for now until they become more urgent or important:"
-    
+
     def show_prio_items(print_statement, list):
         print(print_statement)
         for item in list:
             item_index = list.index(item) + 1
             print(f"{item_index}. {item}")
         print()
-    
+
     if len(high_prio) > 0:
         show_prio_items(high_prio_statement, high_prio)
     else:
@@ -223,7 +222,7 @@ def delete_task(name):
 
             for item in user_list:
                 item_index = user_list.index(item) + 1
-            
+
             if data['Important?'] == 'yes' and data['Urgent?'] == 'yes':
                 print(f"[{item_index}] {data['Task Name']} (important and urgent)")
             elif data['Important?'] == 'no' and data['Urgent?'] == 'yes':
@@ -232,7 +231,7 @@ def delete_task(name):
                 print(f"[{item_index}] {data['Task Name']} (important)")
             elif data['Important?'] == 'no' and data['Urgent?'] == 'no':
                 print(f"[{item_index}] {data['Task Name']} (no prio)")
-            
+
     print()
     task_to_delete = input(f"Please type the number of the task that you would like to delete:\n{Fore.GREEN}")
     print()
@@ -246,10 +245,9 @@ def delete_task(name):
             else:
                 task_to_delete = input(f"Please enter a valid number between 1 and {len(user_list)}\n{Fore.GREEN}")
                 print()
-        except:
+        except ValueError:
             task_to_delete = input(f"Please enter a valid number between 1 and {len(user_list)}\n{Fore.GREEN}")
             print()
-
 
 
 def show_option_menu(name):
@@ -299,5 +297,6 @@ def main():
     username = get_username()
     create_task(username)
     show_option_menu(username)
+
 
 main()
