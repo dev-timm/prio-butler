@@ -29,11 +29,10 @@ def check_for_duplicates(user_input, list_of_records):
     """
     Check if the user input us already captured in the spreadsheet,
     """
-    user_input = user_input.lower()
     is_duplicate = False
     
     for record in list_of_records:
-        if record.lower() == user_input:
+        if record == user_input:
             is_duplicate = True
     
     return is_duplicate
@@ -83,6 +82,25 @@ def create_task(name):
     print()
     while True:
         if len(task_name) > 0:
+
+            user_data = SHEET.worksheet("user").get_all_records()
+            task_list = []
+
+            for data in user_data:
+                data_name = (data['Name'])
+
+                if data_name == name:
+                    task_list.append(data['Task Name'])
+
+            task_exists = check_for_duplicates(task_name, task_list)
+            if task_exists == True:
+                while True:
+                    print()
+                    print(f"Looks like this task already exists on your list.")
+                    print()
+                    show_option_menu(name)
+                    break
+
             break
         else:
             task_name = input(f"Please enter a valid name\n{Fore.GREEN}")
@@ -123,7 +141,7 @@ def show_number_of_tasks(name):
         
         if data_name == name:
             number_of_tasks += 1
-            
+
     print(f"You currently have {number_of_tasks} tasks in your list!")
 
 
