@@ -194,14 +194,19 @@ def delete_task(name):
     task_to_delete = input(f"Please type the number of the task that you would like to delete:\n{Fore.GREEN}")
     print()
     while True:
-        if int(task_to_delete) > 0 and int(task_to_delete) <= len(user_list):
-            user_list.pop(int(task_to_delete) - 1)
-            user_worksheet = SHEET.worksheet("user")
-            user_worksheet.delete_rows(int(task_to_delete) + 1)
-            break
-        else:
+        try:
+            if int(task_to_delete) > 0 and int(task_to_delete) <= len(user_list):
+                user_list.pop(int(task_to_delete) - 1)
+                user_worksheet = SHEET.worksheet("user")
+                user_worksheet.delete_rows(int(task_to_delete) + 1)
+                break
+            else:
+                task_to_delete = input(f"Please enter a valid number between 1 and {len(user_list)}\n{Fore.GREEN}")
+                print()
+        except:
             task_to_delete = input(f"Please enter a valid number between 1 and {len(user_list)}\n{Fore.GREEN}")
             print()
+
 
 
 def show_option_menu(name):
