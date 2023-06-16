@@ -17,12 +17,12 @@ GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('prio-butler')
 
 
-def update_user_worksheet(arg):
+def update_user_worksheet(task):
     """
     update worksheet with input from user.
     """
     user_worksheet = SHEET.worksheet("user")
-    user_worksheet.append_row(arg)
+    user_worksheet.append_row(task)
 
 
 def introduce_to_user():
@@ -62,7 +62,7 @@ def create_task(name):
             task_name = input(f"Please enter a valid name\n{Fore.GREEN}")
             print()
     
-    task_importance = input(f"Splendid!\nCould you tell me if this is an important task?\n1. [yes]\n2. [no]\n{Fore.GREEN}")
+    task_importance = input(f"Splendid!\nCould you tell me if this is an important task?\n[yes]\n[no]\n{Fore.GREEN}")
     print()
     while True:
         if task_importance.lower() == 'yes' or task_importance == 'no':
@@ -71,7 +71,7 @@ def create_task(name):
             task_importance = input(f"Please enter either 'yes' or 'no'\n{Fore.GREEN}")
             print()
     
-    task_urgency = input(f"And is this task urgent?\n1. [yes]\n2. [no]\n{Fore.GREEN}")
+    task_urgency = input(f"And is this task urgent?\n[yes]\n[no]\n{Fore.GREEN}")
     print()
     while True:
         if task_urgency.lower() == 'yes' or task_urgency == 'no':
