@@ -25,6 +25,20 @@ def update_user_worksheet(task):
     user_worksheet.append_row(task)
 
 
+def check_for_duplicates(user_input, list_of_records):
+    """
+    Check if the user input us already captured in the spreadsheet,
+    """
+    user_input = user_input.lower()
+    is_duplicate = False
+    
+    for record in list_of_records:
+        if record.lower() == user_input:
+            is_duplicate = True
+    
+    return is_duplicate
+
+
 def introduce_to_user():
     """
     Welcome user.
@@ -40,11 +54,23 @@ def get_username():
     username = input(f"Would you be so kind to tell me your name so that I can\nproperly address you?\n{Fore.GREEN}")
     while True:
         if len(username) > 0:
+            user_list = SHEET.worksheet("user").col_values(1)
+            list_of_usernames = list(dict.fromkeys(user_list))
+            username_exists = check_for_duplicates(username, list_of_usernames)
+
+            if username_exists == True:
+                while True:
+                    print()
+                    print(f"Welcome back {username}!")
+                    print()
+                    show_option_menu(username)
+                    break      
             break
         else:
             username = input(f"Please enter a valid name\n{Fore.GREEN}")
             print()
     print()
+
     return username
 
 
@@ -97,8 +123,7 @@ def show_number_of_tasks(name):
         
         if data_name == name:
             number_of_tasks += 1
-
-    print(f"Excellent {name}!")
+            
     print(f"You currently have {number_of_tasks} tasks in your list!")
 
 
