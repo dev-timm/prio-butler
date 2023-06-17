@@ -128,3 +128,26 @@ The program was tested with Code Institute’s own [Python Linter](https://pep8c
 | Delete a task | Enter text | Show error message and prompt user to enter a number within a valid range | Pass
 | Delete a task | Enter number lower than 1 or higher than the last task in the list | Show error message and prompt user to enter a number within a valid range | Pass
 | Delete a task | Enter empty input | Show error message and prompt user to enter a number within a valid range | Pass
+
+## Deployment
+
+### Deploying the program to Heroku
+
+1. Log into Heroku and make sure you are in the "Dashboard" section
+2. Click on the top right button “New” and select “Create new app”
+3. Enter app name and choose your region
+4. Click on the “Create app” button
+5. Go to “Settings” and add config vars (if necessary) and buildpacks
+6. Go to “Deploy” section and connect to your GitHub account
+7. Decide between automatic or manual deployment and click on the corresponding button
+8. If the build is completed successfully, you should see a button to view the deployed application
+
+### Cloning the repository
+
+1. Visit the GitHub page of the website’s repository.
+2. Click the “Code” button on top of the page.
+3. Click on “HTTPS” below the “Clone” section.
+4. Click on the copy button next to the link to copy it.
+5. Open your IDE.
+6. Type  ```git clone <copied URL>``` into the terminal.
+7. If everything's done right, you should now see a cloned repository in your IDE.
