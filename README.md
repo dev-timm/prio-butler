@@ -37,7 +37,7 @@ Before starting to code it was important to prepare a rough flow of the program 
 
 ![wireframe of the program](assets/images/low-fi.jpg)
 
-[Link to the wireframe](https://github.com/dev-timm/bilingual/tree/main/assets/images/wireframe)
+[Link to the wireframe](https://github.com/dev-timm/prio-butler/tree/main/assets/images/wireframe)
 
 
 ### Usability
@@ -56,3 +56,40 @@ To further improve the usability of the program, user’s input is displayed in 
 
 To bring more life into the application, prio butler was designed in a way that the users feel like they interact with another human. “Alfred”, the personal butler, leads the users through the application until they decide to close it. Therefore, it is intended that the user enters short words to navigate through the app instead, for example, numbers in front of the options.
 
+## Features
+
+### Welcome Message
+
+When starting the program users are welcomed by Alfred who then asks for their name. Depending on whether the user is a new one or a returning one, they will be redirected to a different flow. New users will be prompted to create their first task, while returning users will be redirected to the main menu.
+
+![Welcome message](assets/images/welcome-message.jpg)
+
+### Menu
+
+The menu gives users a choice between four different actions: create a task, show all tasks, delete a task and quit the program.
+
+![Program menu](assets/images/menu.jpg)
+
+### Create a New Task
+
+The user can create a new task by it giving a title and deciding whether the task is important and/or urgent.
+
+![Create new task](assets/images/create-new-task.jpg)
+
+### Show List of Tasks
+
+The user can see all added tasks in one list. The list is structured into different sections depending on how the user evaluated them based on the questions regarding importance and urgency.
+
+![List of all tasks](assets/images/list-of-tasks.jpg)
+
+### Delete a Task
+
+Any task that was created can also be deleted by the user. This feature displays a list of all tasks and by typing the number to its left, the task will be deleted.
+
+![Delete task](assets/images/delete-task.jpg)
+
+### Goodbye Message
+
+When the user decides to quit the program, a goodbye message will be displayed.
+
+![Goodbye Task](assets/images/goodbye-message.jpg)
