@@ -1,6 +1,5 @@
 import gspread
 from google.oauth2.service_account import Credentials
-from pprint import pprint
 import colorama
 from colorama import Fore, Back, Style
 colorama.init(autoreset=True)
@@ -66,7 +65,8 @@ def get_username():
                     break
             break
         else:
-            username = input(f"Please enter a valid name\n{Fore.GREEN}")
+            print()
+            username = input(f"Please enter a valid username\n{Fore.GREEN}")
             print()
     print()
 
@@ -96,20 +96,20 @@ def create_task(name):
             if task_exists is True:
                 while True:
                     print()
-                    print(f"Looks like this task already exists on your list.")
+                    print(f"Looks like this task already exists on your list")
                     print()
                     show_option_menu(name)
                     break
 
             break
         else:
-            task_name = input(f"Please enter a valid name\n{Fore.GREEN}")
+            task_name = input(f"Please enter a valid task title\n{Fore.GREEN}")
             print()
 
     task_importance = input(f"Splendid!\nCould you tell me if this is an important task?\n[yes]\n[no]\n{Fore.GREEN}")
     print()
     while True:
-        if task_importance.lower() == 'yes' or task_importance == 'no':
+        if task_importance.lower() == 'yes' or task_importance.lower() == 'no':
             break
         else:
             task_importance = input(f"Please enter either 'yes' or 'no'\n{Fore.GREEN}")
@@ -118,7 +118,7 @@ def create_task(name):
     task_urgency = input(f"And is this task urgent?\n[yes]\n[no]\n{Fore.GREEN}")
     print()
     while True:
-        if task_urgency.lower() == 'yes' or task_urgency == 'no':
+        if task_urgency.lower() == 'yes' or task_urgency.lower() == 'no':
             break
         else:
             task_urgency = input(f"Please enter either 'yes' or 'no'\n{Fore.GREEN}")
@@ -188,6 +188,9 @@ def show_list_of_priorities(name):
         no_prio_statement = f"You have {len(no_prio)} tasks which I suggest that you ignore for now until they become more urgent or important:"
 
     def show_prio_items(print_statement, list):
+        """
+        Displays each item of the list as an ordered list.
+        """
         print(print_statement)
         for item in list:
             item_index = list.index(item) + 1
