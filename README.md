@@ -151,3 +151,16 @@ The program was tested with Code Institute’s own [Python Linter](https://pep8c
 5. Open your IDE.
 6. Type  ```git clone <copied URL>``` into the terminal.
 7. If everything's done right, you should now see a cloned repository in your IDE.
+
+## Credits
+
+### Code
+
+- To style the terminal text [colorama](https://pypi.org/project/colorama/) was used 
+- [gspread documentation](https://docs.gspread.org/en/latest/user-guide.html) helped me understand how to work with google sheets in python projects
+- W3C helped me with removing [duplicates inside lists](https://www.w3schools.com/python/python_howto_remove_duplicates.asp)
+
+### Thank You
+
+- to my mentor Dick for supporting me with his feedback throughout the entire project
+- to my wife Valentina for making sure I always get the time and anything else I need for working on this course and projects
