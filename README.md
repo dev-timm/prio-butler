@@ -93,3 +93,38 @@ Any task that was created can also be deleted by the user. This feature displays
 When the user decides to quit the program, a goodbye message will be displayed.
 
 ![Goodbye Task](assets/images/goodbye-message.jpg)
+
+## Testing 
+
+The program was tested with Code Institute’s own [Python Linter](https://pep8ci.herokuapp.com/) and no significant issues were found.
+
+### Feature Testing
+| Feature | Action | Expected Behaviour | Pass/Fail
+| --- | --- | --- | --- |
+| Welcome Message | Enter new username | User has to create new task | Pass
+| Welcome Message | Enter existing username | user is redirected to the program menu | Pass
+| Menu | Enter "new" | user has to create a new task | Pass
+| Menu | Enter "show" | user sees all created tasks in a list | Pass
+| Menu | Enter "delete" | user sees a list of tasks to delete | Pass
+| Menu | Enter "quit" | user sees a goodbye message and program closes | Pass
+| Menu | Enter empty input | show error message and prompt user to enter a valid option | Pass
+| Create a new task | Enter task title | User is prompted to say if task is important or not | Pass
+| Create a new task | Enter empty input as a task title | User is prompted to to enter a valid task title | Pass
+| Create a new task | Enter importance of task | User is prompted to say if task is urgent or not | Pass
+| Create a new task | Enter empty input as importance | User is prompted to choose between "yes" and "no" | Pass
+| Create a new task | Enter anything else than "yes" and "no" as importance | User is prompted to choose between "yes" and "no" | Pass
+| Create a new task | Enter urgency of task | User sees total number of tasks created and the menu | Pass
+| Create a new task | Enter empty input as urgency | User is prompted to choose between "yes" and "no" | Pass
+| Create a new task | Enter anything else than "yes" and "no" as urgency | User is prompted to choose between "yes" and "no" | Pass
+| List of priorities | If no task is important and urgent | User sees positive message that no high-priority tasks exist | Pass
+| List of priorities | If at least one task is important and urgent | User sees list of all high-priority tasks | Pass
+| List of priorities | If no task is important | Section for important tasks is not displayed | Pass
+| List of priorities | If at least one task is important but not urgent | User sees list of all important tasks | Pass
+| List of priorities | If no task is urgent | Section for urgent tasks is not displayed | Pass
+| List of priorities | If at least one task is urgent but not important | User sees list of all urgent tasks | Pass
+| List of priorities | If there are no important nor urgent tasks | Section for not important and not urgent tasks is not displayed | Pass
+| List of priorities | If at least one task is not important and not urgent | User sees list of all not urgent and not important tasks | Pass
+| Delete a task | Enter the number of the task to be deleted | Task is removed from the list, user sees total number of tasks created and the menu | Pass
+| Delete a task | Enter text | Show error message and prompt user to enter a number within a valid range | Pass
+| Delete a task | Enter number lower than 1 or higher than the last task in the list | Show error message and prompt user to enter a number within a valid range | Pass
+| Delete a task | Enter empty input | Show error message and prompt user to enter a number within a valid range | Pass
