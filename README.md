@@ -11,6 +11,7 @@ prio butler’s process of prioritizing tasks is based on a popular matrix used 
 ## Product Decisions
 
 ### User Needs
+
 As a user I want to...
 
 - have an overview of all of my tasks so that I don’t have to be worried to forget them
@@ -26,4 +27,32 @@ prio butler’s core functionalities focus on making sure that the most importan
 
 As mentioned in the introduction, the prioritization of the tasks is based on a popular matrix used by companies and product teams - The Eisenhower Matrix. Each of the tasks the user submits is evaluated based on two important criteria: importance and urgency. When the user requests to see all the tasks, they are returned as a prioritized list.
 
-![preview of program](assets/images/eisenhower-matrix.jpg)
+![preview of the Eisenhower Matrix](assets/images/eisenhower-matrix.jpg)
+
+## Design Decisions
+
+### Preparation
+
+Before starting to code it was important to prepare a rough flow of the program to ensure that there are no unexpected obstacles and the user journey flows smoothly.
+
+![wireframe of the program](assets/images/low-fi.jpg)
+
+[Link to the wireframe](https://github.com/dev-timm/bilingual/tree/main/assets/images/wireframe)
+
+
+### Usability
+
+As the UI is very limited due to the fact the the program runs in the terminal, the focus of the design lies purely on the usability.
+
+#### Layout
+
+To achieve an easy and effortless overview of the interface, there are line spaces added intentionally between sections. This helps the user to digest larger amounts of text information better and therefore increases the overall user experience.
+
+#### Colors
+
+To further improve the usability of the program, user’s input is displayed in a light green color. This enables the user to quickly scan through their own inputs.
+
+#### Interaction Style
+
+To bring more life into the application, prio butler was designed in a way that the users feel like they interact with another human. “Alfred”, the personal butler, leads the users through the application until they decide to close it. Therefore, it is intended that the user enters short words to navigate through the app instead, for example, numbers in front of the options.
+
