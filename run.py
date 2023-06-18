@@ -66,7 +66,7 @@ def get_username():
             break
         else:
             print()
-            username = input(f"Please enter a valid username.\n{Fore.GREEN}")
+            username = input(f"Please enter a valid username.\n{Fore.GREEN}").strip()
             print()
     print()
 
@@ -103,7 +103,7 @@ def create_task(name):
 
             break
         else:
-            task_name = input(f"Please enter a valid task title.\n{Fore.GREEN}")
+            task_name = input(f"Please enter a valid task title.\n{Fore.GREEN}").strip()
             print()
 
     task_importance = input(f"Splendid!\nCould you tell me if this is an important task?\n[yes]\n[no]\n{Fore.GREEN}").lower()
