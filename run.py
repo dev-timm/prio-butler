@@ -145,7 +145,7 @@ def show_number_of_tasks(name):
         if data_name == name:
             number_of_tasks += 1
 
-    print(f"You currently have {number_of_tasks} tasks in your list!")
+    print(f"You currently have {number_of_tasks} task(s) in your list!")
 
 
 def show_list_of_priorities(name):
