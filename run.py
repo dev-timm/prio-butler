@@ -238,9 +238,13 @@ def delete_task(name):
             elif data['Important?'] == 'no' and data['Urgent?'] == 'no':
                 print(f"[{item_index}] {data['Task Name']} (no prio)")
 
-    print()
-    task_to_delete = input(f"Please type the number of the task that you would like to delete:\n{Fore.GREEN}")
-    print()
+    if len(user_list) == 0:
+        show_option_menu(name)
+    else:
+        print()
+        task_to_delete = input(f"Please type the number of the task that you would like to delete:\n{Fore.GREEN}")
+        print()
+
     while True:
         try:
             if int(task_to_delete) > 0 and int(task_to_delete) <= len(user_list):
