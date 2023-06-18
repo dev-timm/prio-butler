@@ -1,6 +1,6 @@
 # prio butler
 
-Too many task at once and don’t know what to focus on first? Alfred, your own personal butler has come to help organizing your priorities.
+Too many tasks at once and don’t know what to focus on first? Alfred, your own personal butler has come to help to organize your priorities.
 
 prio butler’s process of prioritizing tasks is based on a popular matrix used by many companies and product teams around the world. By asking you just a couple of questions, Alfred will recommend which tasks you should prioritize more and which ones you might want to work on at a later point in time.
 
@@ -21,7 +21,7 @@ As a user I want to...
 
 ### MVP
 
-prio butler’s core functionalities focus on making sure that the most important user problems are addressed first. The user has the option to create a new task, show a list of all open tasks and their priorities, delete a task and quit the program.
+prio butler’s core functionalities focus on making sure that the most important user problems are addressed first. The user has the option to create new tasks, show a list of all open tasks and their priorities, delete tasks and quit the program.
 
 ### The Eisenhower Matrix
 
@@ -46,7 +46,7 @@ As the UI is very limited due to the fact the the program runs in the terminal, 
 
 #### Layout
 
-To achieve an easy and effortless overview of the interface, there are line spaces added intentionally between sections. This helps the user to digest larger amounts of text information better and therefore increases the overall user experience.
+To achieve an easy and effortless overview of the interface, there are line spaces added intentionally between sections. This helps the user to digest larger amounts of textual information better and, therefore, increases the overall user experience.
 
 #### Colors
 
@@ -54,7 +54,7 @@ To further improve the usability of the program, user’s input is displayed in 
 
 #### Interaction Style
 
-To bring more life into the application, prio butler was designed in a way that the users feel like they interact with another human. “Alfred”, the personal butler, leads the users through the application until they decide to close it. Therefore, it is intended that the user enters short words to navigate through the app instead, for example, numbers in front of the options.
+To bring more life into the application, prio butler was designed in a way that the users feel like they are interacting with another human. “Alfred”, the personal butler, leads the users through the application until they decide to close it. Therefore, it is generally intended that the user enters short words to navigate through the app instead, for example, numbers in front of the options.
 
 ## Features
 
@@ -78,7 +78,7 @@ The user can create a new task by it giving a title and deciding whether the tas
 
 ### Show List of Tasks
 
-The user can see all added tasks in one list. The list is structured into different sections depending on how the user evaluated them based on the questions regarding importance and urgency.
+The user can see all added tasks structured into different priority lists depending on how the user evaluated them based on the questions regarding importance and urgency.
 
 ![List of all tasks](assets/images/list-of-tasks.jpg)
 
@@ -102,14 +102,18 @@ The program was tested with Code Institute’s own [Python Linter](https://pep8c
 | Feature | Action | Expected Behaviour | Pass/Fail
 | --- | --- | --- | --- |
 | Welcome Message | Enter new username | User has to create new task | Pass
+| Welcome Message | Enter empty input | User prompted to add a valid username | Pass
+| Welcome Message | Enter username with spaces before and after the string | Username saved without spaces and user has to create new task| Pass
 | Welcome Message | Enter existing username | user is redirected to the program menu | Pass
-| Menu | Enter "new" | user has to create a new task | Pass
-| Menu | Enter "show" | user sees all created tasks in a list | Pass
-| Menu | Enter "delete" | user sees a list of tasks to delete | Pass
-| Menu | Enter "quit" | user sees a goodbye message and program closes | Pass
-| Menu | Enter empty input | show error message and prompt user to enter a valid option | Pass
+| Menu | Enter "new" | User has to create a new task | Pass
+| Menu | Enter "show" | User sees all created tasks in priority lists | Pass
+| Menu | Enter "delete" | User sees a list of tasks to delete | Pass
+| Menu | Enter "quit" | User sees a goodbye message and program closes | Pass
+| Menu | Enter empty input | Show error message and prompt user to enter a valid option | Pass
+| Menu | Enter incorrect input | Show error message and prompt user to enter a valid option | Pass
 | Create a new task | Enter task title | User is prompted to say if task is important or not | Pass
 | Create a new task | Enter empty input as a task title | User is prompted to to enter a valid task title | Pass
+| Create a new task | Enter task title with spaces before and after the string | Task title saved without spaces | Pass
 | Create a new task | Enter importance of task | User is prompted to say if task is urgent or not | Pass
 | Create a new task | Enter empty input as importance | User is prompted to choose between "yes" and "no" | Pass
 | Create a new task | Enter anything else than "yes" and "no" as importance | User is prompted to choose between "yes" and "no" | Pass
@@ -128,6 +132,7 @@ The program was tested with Code Institute’s own [Python Linter](https://pep8c
 | Delete a task | Enter text | Show error message and prompt user to enter a number within a valid range | Pass
 | Delete a task | Enter number lower than 1 or higher than the last task in the list | Show error message and prompt user to enter a number within a valid range | Pass
 | Delete a task | Enter empty input | Show error message and prompt user to enter a number within a valid range | Pass
+| Delete a task | No tasks available | Show menu | Pass
 
 ## Deployment
 
