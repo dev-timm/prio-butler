@@ -106,22 +106,22 @@ def create_task(name):
             task_name = input(f"Please enter a valid task title\n{Fore.GREEN}")
             print()
 
-    task_importance = input(f"Splendid!\nCould you tell me if this is an important task?\n[yes]\n[no]\n{Fore.GREEN}")
+    task_importance = input(f"Splendid!\nCould you tell me if this is an important task?\n[yes]\n[no]\n{Fore.GREEN}").lower()
     print()
     while True:
-        if task_importance.lower() == 'yes' or task_importance.lower() == 'no':
+        if task_importance == 'yes' or task_importance == 'no':
             break
         else:
-            task_importance = input(f"Please enter either 'yes' or 'no'\n{Fore.GREEN}")
+            task_importance = input(f"Please enter either 'yes' or 'no'\n{Fore.GREEN}").lower()
             print()
 
-    task_urgency = input(f"And is this task urgent?\n[yes]\n[no]\n{Fore.GREEN}")
+    task_urgency = input(f"And is this task urgent?\n[yes]\n[no]\n{Fore.GREEN}").lower()
     print()
     while True:
-        if task_urgency.lower() == 'yes' or task_urgency.lower() == 'no':
+        if task_urgency == 'yes' or task_urgency == 'no':
             break
         else:
-            task_urgency = input(f"Please enter either 'yes' or 'no'\n{Fore.GREEN}")
+            task_urgency = input(f"Please enter either 'yes' or 'no'\n{Fore.GREEN}").lower()
             print()
 
     task_data = [name, task_name, task_importance, task_urgency]
@@ -241,9 +241,22 @@ def delete_task(name):
     while True:
         try:
             if int(task_to_delete) > 0 and int(task_to_delete) <= len(user_list):
-                user_list.pop(int(task_to_delete) - 1)
                 user_worksheet = SHEET.worksheet("user")
-                user_worksheet.delete_rows(int(task_to_delete) + 1)
+                sheet_name_col = user_worksheet.col_values(1)
+                sheet_task_col = user_worksheet.col_values(2)
+
+                task_index = user_list[int(task_to_delete) - 1]
+                all_sheet_tasks = []
+
+                for index, item in enumerate(sheet_name_col):
+                    all_sheet_tasks.append({'name': sheet_name_col[index], 'task': sheet_task_col[index]})
+
+                for index, item in enumerate(all_sheet_tasks):
+                    if item['name'] == name and item['task'] == task_index['Task Name']:
+                        row_to_delete = index + 1
+
+                user_worksheet.delete_rows(row_to_delete)
+
                 break
             else:
                 task_to_delete = input(f"Please enter a valid number between 1 and {len(user_list)}\n{Fore.GREEN}")
