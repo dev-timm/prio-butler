@@ -49,7 +49,7 @@ def get_username():
     Ask for username.
     Validate if entered name is more than one character long.
     """
-    username = input(f"Would you be so kind to tell me your name so that I can\nproperly address you?\n{Fore.GREEN}")
+    username = input(f"Please be so kind to tell me your name so that I can properly address you.\n{Fore.GREEN}").strip()
     while True:
         if len(username) > 0:
             user_list = SHEET.worksheet("user").col_values(1)
@@ -66,7 +66,7 @@ def get_username():
             break
         else:
             print()
-            username = input(f"Please enter a valid username\n{Fore.GREEN}")
+            username = input(f"Please enter a valid username.\n{Fore.GREEN}")
             print()
     print()
 
@@ -78,7 +78,7 @@ def create_task(name):
     Creates a new task.
     Asks the user for a title, the importance and urgency of the task.
     """
-    task_name = input(f"Which task would you like to add to your list of tasks?\n{Fore.GREEN}")
+    task_name = input(f"Which task would you like to add to your list of tasks?\n{Fore.GREEN}").strip()
     print()
     while True:
         if len(task_name) > 0:
@@ -96,14 +96,14 @@ def create_task(name):
             if task_exists is True:
                 while True:
                     print()
-                    print(f"Looks like this task already exists on your list")
+                    print(f"Looks like this task already exists on your list. If you like, you can review your current tasks by typing [show] in the menu below.")
                     print()
                     show_option_menu(name)
                     break
 
             break
         else:
-            task_name = input(f"Please enter a valid task title\n{Fore.GREEN}")
+            task_name = input(f"Please enter a valid task title.\n{Fore.GREEN}")
             print()
 
     task_importance = input(f"Splendid!\nCould you tell me if this is an important task?\n[yes]\n[no]\n{Fore.GREEN}").lower()
@@ -112,7 +112,7 @@ def create_task(name):
         if task_importance == 'yes' or task_importance == 'no':
             break
         else:
-            task_importance = input(f"Please enter either 'yes' or 'no'\n{Fore.GREEN}").lower()
+            task_importance = input(f"Please enter either 'yes' or 'no'.\n{Fore.GREEN}").lower()
             print()
 
     task_urgency = input(f"And is this task urgent?\n[yes]\n[no]\n{Fore.GREEN}").lower()
@@ -121,7 +121,7 @@ def create_task(name):
         if task_urgency == 'yes' or task_urgency == 'no':
             break
         else:
-            task_urgency = input(f"Please enter either 'yes' or 'no'\n{Fore.GREEN}").lower()
+            task_urgency = input(f"Please enter either 'yes' or 'no'.\n{Fore.GREEN}").lower()
             print()
 
     task_data = [name, task_name, task_importance, task_urgency]
@@ -259,10 +259,10 @@ def delete_task(name):
 
                 break
             else:
-                task_to_delete = input(f"Please enter a valid number between 1 and {len(user_list)}\n{Fore.GREEN}")
+                task_to_delete = input(f"Please enter a valid number between 1 and {len(user_list)}.\n{Fore.GREEN}")
                 print()
         except ValueError:
-            task_to_delete = input(f"Please enter a valid number between 1 and {len(user_list)}\n{Fore.GREEN}")
+            task_to_delete = input(f"Please enter a valid number between 1 and {len(user_list)}.\n{Fore.GREEN}")
             print()
 
 
@@ -282,7 +282,7 @@ def show_option_menu(name):
         if len(user_selection) > 0:
             break
         else:
-            user_selection = input(f"Please enter a valid option\n{Fore.GREEN}")
+            user_selection = input(f"Please enter a valid option.\n{Fore.GREEN}")
             print()
 
     while True:
@@ -299,7 +299,7 @@ def show_option_menu(name):
             print(f"I wish you a wonderful rest of your day {name}!")
             quit()
         else:
-            user_selection = input(f"Please enter a valid option\n{Fore.GREEN}")
+            user_selection = input(f"Please enter a valid option.\n{Fore.GREEN}")
             print()
 
     show_option_menu(name)
