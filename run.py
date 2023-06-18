@@ -1,6 +1,7 @@
 import gspread
 from google.oauth2.service_account import Credentials
 import colorama
+from time import sleep
 from colorama import Fore, Back, Style
 colorama.init(autoreset=True)
 
@@ -41,7 +42,9 @@ def introduce_to_user():
     """
     Welcome user.
     """
-    print(f"Welcome user! I am Alfred, your butler who will help you prioritize your tasks for today.\n")
+    print(f"Welcome user! I am Alfred, your butler who will help you prioritize your tasks for today.\n"); sleep(1.5)
+    print(f"If you give me the tasks that you need to do for today, I will create your personalized priority lists of tasks. Once you are done with a task, you can simply delete it from the list and focus on the other ones.\n"); sleep(2)
+    print(f"Alright, let's get started.\n"); sleep(2)
 
 
 def get_username():
